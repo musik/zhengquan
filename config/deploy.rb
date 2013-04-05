@@ -77,13 +77,9 @@ require './lib/recipes/custom.rb'
 #Assets
 
 #Sphinx
-#before 'deploy:create_symlink', 'sphinx:pi'
-after 'deploy:create_symlink', 'sphinx:symlink'
-#after 'deploy:create_symlink', 'sphinx:config'
-before 'deploy:start','sphinx:start'
-#before 'deploy:restart','sphinx:index'
-#before 'deploy:restart','sphinx:restart'
-require './lib/recipes/sphinx.rb'
+#after 'deploy:create_symlink', 'sphinx:symlink'
+#before 'deploy:start','sphinx:start'
+#require './lib/recipes/sphinx.rb'
 
 #Unicorn
 set :unicorn_workers,2
