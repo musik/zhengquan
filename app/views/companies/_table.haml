@@ -1,0 +1,15 @@
+-if companies.present?
+  %table.table.companies
+    %thead
+      %tr
+        %th.fn 名称
+        %th.city 注册地
+        %th.capital 注册资本
+        %th.stores 营业部
+    %tbody
+      -companies.each do |c|
+        %tr.company{:class=>cycle('a','b')}
+          %td.fn=link_to c.short,company_home_url(c.slug),:title=>c.name
+          %td.city=c.city_name
+          %td.capital=c.capital
+          %td.stores #{c.stores_count}

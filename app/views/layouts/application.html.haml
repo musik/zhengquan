@@ -1,13 +1,22 @@
 !!!
 %html
   %head
+    %meta{:charset => "utf-8"}
+    %meta{"http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1"}
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
-      %title= content_for?(:title) ? yield(:title) : "Zhengquan"
-      %meta{:content => content_for?(:description) ? yield(:description) : "Zhengquan", :name => "description"}
-        = stylesheet_link_tag "application", :media => "all"
-        = javascript_include_tag "application"
-        = csrf_meta_tags
-        = yield(:head)
+    %title= content_for?(:title) ? yield(:title) : t('appname')
+    -if content_for? :description
+      %meta{:content =>  yield(:description), :name => "description"}
+    = stylesheet_link_tag "application", :media => "all"
+    <!--[if lt IE 9]>
+    = javascript_include_tag "html5shiv"
+    <![endif]-->
+    <!--[if IE 6]>
+    = stylesheet_link_tag "ie6"
+    <![endif]-->
+    = csrf_meta_tags
+    = yield(:head)
+    = javascript_include_tag "application"
   %body{:class => "#{controller_name} #{action_name}"}
     .navbar.navbar-fixed-top
       %nav.navbar-inner
@@ -15,11 +24,20 @@
           = render 'layouts/navigation'
     #main{:role => "main"}
       .container
+        .breadcrumbs
+          -#%span.gray 您的位置:
+          =breadcrumbs.render :format=>'inline'
         .content
           .row
-            .span12
-              = render 'layouts/messages'
+            -if @multicol
+              .span12
+                = render 'layouts/messages'
               = yield
+            -else
+              .span12
+                = render 'layouts/messages'
+                = yield
           %footer
+            &copy; 2013 www.lxzq.com
       / ! end of .container
     / ! end of #main

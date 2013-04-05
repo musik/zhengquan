@@ -1,0 +1,10 @@
+-if stores.present?
+  %ul.normal
+    -stores.each do |s|
+      %li{:class=>cycle('a','b')}
+        =s.name.sub(@company.name,'')
+        %small=s.address
+-else        
+  .alert
+    暂无记录
+

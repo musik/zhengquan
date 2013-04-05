@@ -1,0 +1,24 @@
+-title 'dirty'
+
+%h1 Dirty
+%p
+  =link_to "省空",:pnull=>1
+  =link_to "市空",:cnull=>1
+=paginate @stores
+%table.table
+  -i=0
+  -@stores.each do |s|
+    %tr
+      %td=i+=1
+      %td
+        =s.company.name
+        =s.company.oid
+      %td=link_to s.name,s
+      %td=s.province.name if s.province.present?
+      %td=s.city.name if s.city.present?
+      %td=s.address
+      %td
+        = link_to 'Edit', edit_store_path(s)
+        = link_to 'Destroy', s, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+

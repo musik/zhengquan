@@ -1,0 +1,16 @@
+-@multicol = true
+.span2#primary
+  .well
+    .widget
+      %strong 关于
+      %p
+        本站证券公司数据来自中国证券协会官方网站,仅根据注册营业部数量排序,不代表相关公司实际排名。
+    -top_cities = Province.neidi
+    .province_inline
+      -top_cities.each do |city|
+        =link_to city.short_name,province_url(city.name_en),:title=>"#{city.short_name}证券公司"
+    -#-top_cities = City.not_empty.top
+    -#-top_cities.each do |city|
+      -#=link_to city.short_name,nil,:title=>"#{city.short_name}证券公司"
+      -#%small=city.companies_count
+      -#%br

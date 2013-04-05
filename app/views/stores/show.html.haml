@@ -1,0 +1,22 @@
+-title @store.name,@store.short_name
+%h1=yield :header
+%p
+  %b 所属:
+  = @store.company.name
+%p
+  %b 所在:
+  =@store.city_name
+%p
+  %b 地址:
+  = @store.address
+%p
+  %b 联系人:
+  = @store.contact
+%p
+  %b 电话:
+  = @store.phone
+
+-if can? :manage,@store
+  = link_to 'Edit', edit_store_path(@store)
+  \|
+  = link_to 'Back', stores_path

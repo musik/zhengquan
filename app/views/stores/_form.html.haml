@@ -1,0 +1,15 @@
+=@store.company.name
+= simple_form_for(@store) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name,:input_html=>{:class=>"input-xxlarge"}
+    = f.input :address,:input_html=>{:class=>"input-xxlarge"}
+    = f.input :contact
+    = f.input :phone
+    = f.input :email
+    = f.input :tousu
+    = f.region_select [:province,:city,:district]
+
+  .form-actions
+    = f.button :submit

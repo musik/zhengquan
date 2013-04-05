@@ -1,0 +1,41 @@
+-title @title,@header
+.span9
+  %h1=yield :header
+  -if @company.present?
+    .alert
+      =link_to @company.name,company_home_url(@company.slug)
+      &raquo;
+      -if @pgroups.present?
+        %ul.filters
+          -@pgroups.each do |s|
+            -p = s.province
+            -next if p.nil?
+            %li
+              =link_to p.short_name,province_company_url(p.name_en,@company.slug),:title=>"#{@company.short}#{p.short_name}营业部",:class=>(@province.present? && @province.id == p.id) ? "current" : nil
+        .clearfix
+  -if @companies.present?
+    .alertx
+      %h2 总部注册在#{@province.short_name}的证券公司
+      %ul.logos
+        -@companies.each do |c|
+          %li
+            .fn=link_to c.short,company_home_url(c.slug),:title=>c.name
+            =image_tag "/logo/#{c.slug}.jpg",height: 41,width: 107,alt: c.name
+        .clearfix
+      -#=link_to "更多 &raquo;".html_safe,company_city_url(@province.name_en)
+
+  -if @groups.present?
+    %strong #{@province.name}证券公司营业部 &raquo;
+    %ul.filters
+      -@groups.each do |s|
+        -c = s.company
+        %li
+          .fn=link_to c.short,province_company_url(@province.name_en,c.slug),:title=>"#{c.short}#{@province.short_name}营业部",:class=>(@company.present? && @company.id == c.id) ? "current" : nil
+      .clearfix
+  =paginate @stores
+  -options = {}
+  -options[:hide_company] = true if @company.present?
+  -options[:hide_province] = true if @province.present?
+  = render :partial => 'list',:locals=>options
+
+=render :partial=>'companies/primary'  

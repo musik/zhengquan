@@ -1,0 +1,7 @@
+-title @title || '营业部'
+.span9
+  %h1=yield :header
+  =paginate @stores,:window=>5
+  = render :partial => 'list'
+
+=render :partial=>'companies/primary'  

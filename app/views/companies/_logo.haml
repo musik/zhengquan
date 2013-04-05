@@ -1,0 +1,7 @@
+-if companies.present?
+  %ul.logos
+    -companies.each do |c|
+      %li
+        .fn=link_to c.short,company_home_url(c.slug),:title=>c.name
+        =image_tag "/logo/#{c.slug}.jpg",height: 41,width: 107,alt: c.name
+    .clearfix

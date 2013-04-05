@@ -1,0 +1,8 @@
+-if companies.present?
+  %ul.companies
+    %li.thead
+      .fn 名称
+      .capital 注册资本
+    -companies.each do |c|
+      %li.company{:class=>cycle('a','b')}
+        .fn=link_to c.short,c.to_url,:title=>c.name

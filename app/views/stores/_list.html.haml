@@ -1,0 +1,25 @@
+-hide_province ||= false
+-hide_company ||= false
+%ul.normal
+  -manage = can? :manage,Store
+  - @stores.each do |store|
+    %li{:class=>cycle('a','b')}
+      .pull-left
+        =link_to store.company.name,store.company.to_url,:rel=>'nofollow' unless hide_company
+        = store.short_name
+        %br
+        = store.province.name unless hide_province or store.province.nil?
+        = store.city.name unless store.city.nil?
+        %br
+        = store.address
+        = store.contact
+        = store.phone
+      -if manage
+        %small.pull-right
+          = link_to 'Show', store
+          = link_to 'Edit', edit_store_path(store)
+          = link_to 'Destroy', store, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+      .clearfix
+  %br
+= link_to 'New Store', new_store_path if manage
