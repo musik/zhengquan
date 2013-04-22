@@ -25,9 +25,10 @@
           = render 'layouts/navigation'
     #main{:role => "main"}
       .container
-        .breadcrumbs
-          -#%span.gray 您的位置:
-          =breadcrumbs.render :format=>'inline'
+        -unless @hide_breadcrumbs
+          .breadcrumbs
+            -#%span.gray 您的位置:
+            =breadcrumbs.render :format=>'inline'
         .content
           .row
             -if @multicol
