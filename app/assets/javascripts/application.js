@@ -12,4 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//xx= require bootstrap
+//xxx= require bootstrap
+//= require bootstrap-alert
+function reverse(s){
+    return s.split("").reverse().join("");
+}

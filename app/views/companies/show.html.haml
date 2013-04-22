@@ -19,7 +19,7 @@
     = @company.capital
   %p
     %b 网站:
-    = @company.website
+    =link_to @company.website,@company.website,:rel=>"nofollow",:target=>'_blank'
   %p
     %b 联系电话:
     = @company.phone

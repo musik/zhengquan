@@ -8,11 +8,11 @@ Zhengquan::Application.routes.draw do
   match '/:province/:id' => 'stores#province_company',:as=>'province_company',:constraints=>{:province => provinces}
   match '/:province' => 'stores#province',:as=>'province',:constraints=>{:province => provinces}
 
-  resources :companies 
+  resources :companies,:except=>[:index]
 
-  authenticated :user do
-    root :to => 'home#index'
-  end
+  #authenticated :user do
+    #root :to => 'home#index'
+  #end
   match '/companies/:id'=>'companies#city',:as=>'company_city'
   root :to => "companies#home"
   devise_for :users

@@ -2,6 +2,16 @@
 -meta :description,"本站证券公司数据来自中国证券协会官方网站,仅根据注册营业部数量排序,不代表相关公司实际排名或排行。"
 -meta :keywords,"证券公司,证券公司排名"
 .span9  
+  .alert
+    %button.close{'data-dismiss'=>"alert"} &times;
+    你是不是在找<a href="/lxzq">联讯证券</a>?
+  .alert.alert-info
+    %button.close{'data-dismiss'=>"alert"} &times;
+    此域名转让.有意请带价短信
+    =javascript_tag "document.write(reverse('13690478081'))"
+    ,或QQ 
+    =javascript_tag "document.write(reverse('62856285'))"
+
   %h1 证券公司
   = render :partial => 'logo',:locals=>{:companies=>@companies}
   -#= render :partial => 'table',:locals=>{:companies=>@companies}
