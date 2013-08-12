@@ -1,14 +1,14 @@
 
 set :application, "zhengquan"
-set :repository,  "git@gitcafe.com:muzik/zhengquan.git"
-#set :repository,  "git@github.com:musik/sdmec.git"
+#set :repository,  "git@gitcafe.com:muzik/zhengquan.git"
+set :repository,  "git@github.com:musik/zhengquan.git"
 
 set :scm, :git
 
 set :deploy_to, "/home/muzik/zhengquan"
-role :web, "rho"                          # Your HTTP server, Apache/etc
-role :app, "rho"                          # This may be the same as your `Web` server
-role :db,  "rho", :primary => true # This is where Rails migrations will run
+role :web, "lrt"                          # Your HTTP server, Apache/etc
+role :app, "lrt"                          # This may be the same as your `Web` server
+role :db,  "lrt", :primary => true # This is where Rails migrations will run
 #role :db,  "your slave db-server here"
 set :user, "muzik"
 set :group, "muzik"
@@ -97,8 +97,8 @@ after 'deploy:restart', 'unicorn:restart' # app IS NOT preloaded
 #set :resque_service,'resque-sdmec'
 #require './lib/recipes/resque.rb'
 #before 'deploy:restart','resque:restart'
-#role :resque_worker, "rho"
-#role :resque_scheduler, "rho"
+#role :resque_worker, "lrt"
+#role :resque_scheduler, "lrt"
 #set :workers, { "update_keywords,update_items" => 1 }
 #require 'capistrano-resque'
 
