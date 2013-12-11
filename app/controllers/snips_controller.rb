@@ -61,7 +61,8 @@ class SnipsController < ApplicationController
 
     respond_to do |format|
       if @snip.update_attributes(params[:snip])
-        format.html { redirect_to @snip, notice: 'Snip was successfully updated.' }
+        #format.html { redirect_to @snip, notice: 'Snip was successfully updated.' }
+        format.html { render action: "edit", notice: 'Snip was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
