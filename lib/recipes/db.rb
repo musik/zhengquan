@@ -13,6 +13,7 @@ Capistrano::Configuration.instance.load do
       EOF
       task :dump, :roles => :db, :only => { :primary => true } do
         prepare_from_yaml
+        run "mkdir -pv #{shared_path}/backup"
         run "mysqldump --user=#{db_user} -p --host=#{db_host} #{db_name} | bzip2 -z9 > #{db_remote_file}" do |ch, stream, out|
         ch.send_data "#{db_pass}\n" if out =~ /^Enter password:/
           puts out
@@ -27,6 +28,16 @@ Capistrano::Configuration.instance.load do
           puts out
         end
       end
+      task :restore_local do
+        prepare_from_yaml
+        set :db_user,'root'
+        set :db_pass,''
+        set :db_name,'lxzq_development'
+        run_locally "bzcat #{db_local_file} | mysql --user=#{db_user} -p #{db_name}" do |ch, stream, out|
+        ch.send_data "#{db_pass}\n" if out =~ /^Enter password:/
+          puts out
+        end
+      end
 
       desc "|DarkRecipes| Downloads the compressed database dump to this machine"
       task :fetch_dump, :roles => :db, :only => { :primary => true } do
@@ -35,7 +46,7 @@ Capistrano::Configuration.instance.load do
       end
       task :push_dump, :roles => :db, :only => { :primary => true } do
         prepare_from_yaml
-        upload "tmp/dump.sql.bz2",db_remote_file, :via => :scp
+        upload db_local_file,db_remote_file, :via => :scp
       end
     
       desc "|DarkRecipes| Create MySQL database and user for this environment using prompted values"
