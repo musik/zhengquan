@@ -1,6 +1,6 @@
 #source 'https://rubygems.org'
 source 'http://ruby.taobao.org'
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.16'
 gem 'sqlite3', :group => [:development, :test]
 gem 'mysql2'
 group :assets do
@@ -62,3 +62,4 @@ gem 'redis-rails'
 #gem 'sac',:git=>'git@github.com:musik/sac.git'
 gem 'chinese_pinyin'
 gem 'china_regions'
+gem 'RedCloth'

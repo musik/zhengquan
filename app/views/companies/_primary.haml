@@ -14,3 +14,7 @@
       -#=link_to city.short_name,nil,:title=>"#{city.short_name}证券公司"
       -#%small=city.companies_count
       -#%br
+  -if is_home?
+    .widget 
+      %h3 友情链接
+      =Snip.output("home").gsub("<a ","<a target=\"_blank\" ").html_safe

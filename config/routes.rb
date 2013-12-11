@@ -1,4 +1,6 @@
 Zhengquan::Application.routes.draw do
+  resources :snips
+
   resources :stores,:path=>'yyb' do
     collection do 
       get 'dirty'
