@@ -1,8 +1,7 @@
 %h1 Listing snips
 
 %h2 HOME
-=Snip.output("home").gsub("<a ","<a target=\"_blank\" ").html_safe
-
+=RedCloth.new(Snip.output("home")).to_html.gsub("<a ","<a target=\"_blank\" ").html_safe rescue nil
 -if can? :manage,Snip
   %table
     %tr

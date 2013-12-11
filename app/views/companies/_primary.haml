@@ -17,4 +17,4 @@
   -if is_home?
     .widget 
       %h3 友情链接
-      =Snip.output("home").gsub("<a ","<a target=\"_blank\" ").html_safe rescue nil
+      =RedCloth.new(Snip.output("home")).to_html.gsub("<a ","<a target=\"_blank\" ").html_safe rescue nil
