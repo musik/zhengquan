@@ -1,33 +1,37 @@
--title @company.name
+-title t('.title',name: @company.name,short: @company.to_short),@company.name
+-meta :keywords,t('.keywords',name: @company.name,short: @company.to_short)
+-meta :description,t('.description',name: @company.name,short: @company.to_short)
 .span9
-  %h1= @company.name
-  %p
-    %b 注册地址:
-    = @company.address
-  %p
-    %b 办公地址:
-    = @company.address1
-    %small (邮编 #{@company.postal})
-  %p
-    %b 法人代表:
-    = @company.contact
-  %p
-    %b 许可证:
-    = @company.sn
-  %p
-    %b 注册资金:
-    = @company.capital
-  %p
-    %b 网站:
-    =link_to @company.website,@company.website,:rel=>"nofollow",:target=>'_blank'
-  %p
-    %b 联系电话:
-    = @company.phone
-  %p
-    %b 业务范围:
-    = @company.scopes
+  %h1= @company.to_short
+  .well
+    %h2 #{@company.name}
+    %p
+      %b 注册地址:
+      = @company.address
+    %p
+      %b 办公地址:
+      = @company.address1
+      %small (邮编 #{@company.postal})
+    %p
+      %b 法人代表:
+      = @company.contact
+    %p
+      %b 许可证:
+      = @company.sn
+    %p
+      %b 注册资金:
+      = @company.capital
+    %p
+      %b 官方网站:
+      =link_to @company.website,@company.website,:rel=>"nofollow",:target=>'_blank'
+    %p
+      %b 联系电话:
+      = @company.phone
+    %p
+      %b 业务范围:
+      = @company.scopes
 
-  %h3 营业部
+  %h2 #{@company.to_short}营业部
   -if @groups.present?
     %ul.filters
       -@groups.each do |s|
@@ -40,6 +44,6 @@
   =link_to "更多 &raquo;".html_safe,company_stores_url(@company.slug),:rel=>'nofollow' if @company.stores_count.present? && @company.stores_count > 10
 
 
--if can? :edit,@company
-  = link_to 'Edit', edit_company_path(@company)
+  -if can? :edit,@company
+    %p= link_to 'Edit', edit_company_path(@company)
 = render :partial => 'primary'

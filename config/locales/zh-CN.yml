@@ -4,3 +4,11 @@ zh-CN:
     home: 证券公司
     yyb: 营业部
     page: "%{page}"
+  companies:
+    show:
+      title: "%{short}_%{short}怎么样?%{short}营业部,%{name}"
+      keywords: "%{short},%{short}公司,%{short}怎么样,%{short}营业部,%{name},%{short}电话"
+      description: "%{short}即%{name},此页面为你提供%{short}公司在证券协会的注册信息、官方网址、联系电话、网上交易系统网址、交易软件下载、各地分公司及%{short}营业部地址等信息。"
+  stores:
+    province:
+      title: "%{name}证券公司_%{name}证券网,%{name}公司排名/营业部"

@@ -1,4 +1,4 @@
--title @title,@header
+-title t('.title',name: @province.short_name),@title
 .span9
   %h1=yield :header
   -if @company.present?
@@ -19,8 +19,9 @@
       %ul.logos
         -@companies.each do |c|
           %li
-            .fn=link_to c.short,company_home_url(c.slug),:title=>c.name
-            =image_tag "/logo/#{c.slug}.jpg",height: 41,width: 107,alt: c.name
+            .fn=link_to c.short,company_home_url(c.slug),:title=>c.short
+            %a{href: company_home_url(c.slug)}
+              =image_tag "/logo/#{c.slug}.jpg",height: 41,width: 107,alt: c.name
         .clearfix
       -#=link_to "更多 &raquo;".html_safe,company_city_url(@province.name_en)
 

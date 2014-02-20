@@ -21,7 +21,7 @@ class CompaniesController < ApplicationController
     @stores = @company.stores.limit(10).all
     @groups = @company.stores.group(:Province_id).includes(:province)
     breadcrumbs.add @company.city.name,nil if @company.city.present?
-    breadcrumbs.add @company.name
+    breadcrumbs.add @company.to_short
 
     respond_to do |format|
       format.html # show.html.erb

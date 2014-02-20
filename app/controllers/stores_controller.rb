@@ -1,7 +1,7 @@
 #encoding: utf-8
 class StoresController < ApplicationController
   load_and_authorize_resource :except=>[:province,:province_company]
-  before_filter :yyb_breadcrumbs
+  before_filter :yyb_breadcrumbs,except: %w(province_company)
   def yyb_breadcrumbs
     breadcrumbs.add :yyb,(action_name == 'index' && params[:page].nil?) ? nil : stores_url
   end
@@ -32,7 +32,7 @@ class StoresController < ApplicationController
     @stores = @province.stores.where(:company_id=>@company.id).page(params[:page] || 1).includes([:company,:province,:city])
     @groups = @province.stores.group(:company_id).includes(:company)
     @pgroups = @company.stores.group(:province_id).includes(:province)
-    breadcrumbs.add @company.name,company_home_url(@company.slug)
+    breadcrumbs.add @company.to_short,company_home_url(@company.slug)
     breadcrumbs.add @province.short_name + "分公司"
     @title = "#{@company.short}#{@province.short_name}分公司/#{@company.name}在#{@province.name}的营业部"
     @header = "#{@company.short}#{@province.short_name}分公司"
