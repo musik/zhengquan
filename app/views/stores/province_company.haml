@@ -1,0 +1,31 @@
+-title @title,@header
+.span9
+  %h1=yield :header
+  -if @company.present?
+    .alert
+      -#=link_to @company.name,company_home_url(@company.slug)
+      -#&raquo;
+      -if @pgroups.present? && @pgroups.count.size > 1
+        %ul.filters
+          -@pgroups.each do |s|
+            -p = s.province
+            -next if p.nil?
+            %li
+              =link_to p.short_name,province_company_url(p.name_en,@company.slug),:title=>"#{@company.short}#{p.short_name}营业部",:class=>(@province.present? && @province.id == p.id) ? "current" : nil
+        .clearfix
+
+  =paginate @stores
+  -options = {}
+  -options[:hide_company] = true if @company.present?
+  -options[:hide_province] = true if @province.present?
+  = render :partial => 'list',:locals=>options
+  -if @groups.present?
+    %strong #{@province.name}其它证券公司营业部 &raquo;
+    %ul.filters
+      -@groups.each do |s|
+        -c = s.company
+        %li
+          .fn=link_to c.short,province_company_url(@province.name_en,c.slug),:title=>"#{c.short}#{@province.short_name}营业部",:class=>(@company.present? && @company.id == c.id) ? "current" : nil
+      .clearfix
+
+=render :partial=>'companies/primary'  

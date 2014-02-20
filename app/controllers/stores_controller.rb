@@ -32,11 +32,12 @@ class StoresController < ApplicationController
     @stores = @province.stores.where(:company_id=>@company.id).page(params[:page] || 1).includes([:company,:province,:city])
     @groups = @province.stores.group(:company_id).includes(:company)
     @pgroups = @company.stores.group(:province_id).includes(:province)
-    breadcrumbs.add @province.name,province_url(@province.name_en)
-    breadcrumbs.add @company.name,(params[:page].nil? ? nil : province_url(@province.name_en))
-    @title = "#{@company.short}#{@province.short_name}营业部"
-    #@header = "<span class='pre'>#{@province.short_name}证券公司营业部 &raquo;</span> #{@company.short}"
-    render :province
+    breadcrumbs.add @company.name,company_home_url(@company.slug)
+    breadcrumbs.add @province.short_name + "分公司"
+    @title = "#{@company.short}#{@province.short_name}分公司/#{@company.name}在#{@province.name}的营业部"
+    @header = "#{@company.short}#{@province.short_name}分公司"
+    @header = "<span class='pre'>#{@company.name} &raquo;</span> #{@header}"
+    #render :province
   end
   def dirty
     @stores = Store.includes([:company,:province,:city]).page(params[:page] || 1).per(100)
