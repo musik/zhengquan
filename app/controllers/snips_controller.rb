@@ -19,6 +19,7 @@ class SnipsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @snip }
+      format.text { render text: @snip.body }
     end
   end
 
