@@ -1,7 +1,15 @@
-%h1 Editing company
+-title "编辑： #{@company.name}"
+-@content_layout = 'company'
+-meta :robot,"noindex"
+%section
+  %header.panel-header.row-fluid
+    .span11
+      .panel-header-coll
+        %h2 编辑: #{@company.name} 
+    .span1
+  %section.panel-content
+    = render 'form'
 
-= render 'form'
-
-= link_to 'Show', @company
-\|
-= link_to 'Back', companies_path
+    = link_to 'Show', @company
+    \|
+    = link_to 'Back', companies_path

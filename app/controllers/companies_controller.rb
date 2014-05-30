@@ -49,6 +49,8 @@ class CompaniesController < ApplicationController
   # GET /companies/1/edit
   def edit
     #@company = Company.find_by_slug(params[:id])
+    breadcrumbs.add @company.to_short,company_home_url(@company.slug)
+    breadcrumbs.add :edit
   end
 
   # POST /companies

@@ -34,6 +34,8 @@
     %p
       %b 业务范围:
       = @company.scopes
+    -if can? :edit,@company
+      %p= link_to '编辑以上信息', edit_company_path(@company),class: "btn btn-primary"
 
   %header.panel-header.row-fluid
     .span11
@@ -53,6 +55,4 @@
     =link_to "更多 &raquo;".html_safe,company_stores_url(@company.slug),:rel=>'nofollow' if @company.stores_count.present? && @company.stores_count > 10
 
 
-  -if can? :edit,@company
-    %p= link_to 'Edit', edit_company_path(@company)
   -#= render :partial => 'primary'
