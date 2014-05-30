@@ -1,0 +1,141 @@
+zh-CN:
+  date:
+    order: ""
+  number:
+    human:
+      storage_units:
+        units:
+          byte: byte
+        format: Kb
+  helpers:
+    submit:
+      create: 创建
+      update: 保存
+      defaults:
+        create: 创建
+        update: 保存
+      company:
+        create: "创建%{model}"
+        update: 保存
+  activerecord:
+    models:
+      company: 公司
+      store: 营业部
+    attributes:
+      company:
+        letter: 首字母
+        name: 全称
+        content: 简介
+      post:
+        title: 标题
+        excerpt: 摘要
+        seo_title: SEO标题
+        keywords: 关键词
+        post_type: 类型
+        related: 相关药品
+      shop:
+        website: 网站
+        domain: 域名
+        affurl: 推介网址
+        linked: 反链
+        cert: 交易许可证
+        service: 服务范围
+        company_name: 单位名称
+        owner: 法人
+        address: 地址
+        reg_in: 发证日期
+        expires_in: 过期日期
+    enums:
+      post:
+        post_types:
+          news: 新闻
+          wiki: 知识
+          ask: 问答
+
+    errors:
+      models:
+        post:
+          attributes:
+            title:
+              blank: 标题不能为空
+            description:
+              blank: 不能为空 
+  simple_form:
+    "yes": '是'
+    "no": '否'
+    required:
+      text: '必需的'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "请检查以下错误:"
+    # Labels and hints examples
+    labels:
+      defaults:
+        name: 名称
+        description: 简介
+        password: '密码'
+        password_confirmation: 请再确认你的密码
+        current_password: 你的密码
+        submit: 提交
+      user:
+        remember_me: 记住我 
+        name: '用户名'
+        email: '电子邮件'
+        contact: 联系人
+        phone: 电话
+        company_name: 企业名称
+        new:         
+        edit:
+          password: '新密码'
+          password_confirmation: 确认新密码
+          current_password: 密码验证
+      company:
+        name: 全称
+        abbr: 简称
+        category: 主营行业
+        category_name: 主营行业
+        contact_name: 联系人
+        address: 地址
+        zipcode: 邮编
+        phone: 电话
+        fax: 传真
+        website: 网站
+        content: 简介
+      post:
+        title: 标题
+        content: 正文
+        category: 分类
+        tags_input: 关键词
+        photo: 图片
+        publish: 发表
+        laiyuan: 来源
+        laiyuan_url: 来源网址
+        author: 作者
+        excerpt: 摘要
+        seo_title: SEO标题
+        keywords: 关键词
+      entry:
+        title: 标题
+        chengfen: 成分
+        yongfa: 用法用量
+        zhuzhi: 功能主治
+        name: 品名
+        guige: 规格
+        changjia_name: 厂家
+        pihao: 批准文号
+        tags_input: 关键词
+        description: 描述
+        company_name: 企业名称
+        contact: 联系人
+        phone: 电话
+      comment:
+        body: 评论
+        author_name: 名称
+        author_email: EMAIL
+    hints:
+      entry:
+        tags_input: 多个关键词可用逗号隔开
+        

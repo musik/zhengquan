@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140530093531) do
+ActiveRecord::Schema.define(:version => 20140530122100) do
 
   create_table "cities", :force => true do |t|
     t.string   "name"
@@ -45,8 +45,8 @@ ActiveRecord::Schema.define(:version => 20140530093531) do
     t.string   "website"
     t.string   "phone"
     t.string   "scopes"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
     t.string   "slug"
     t.string   "pinyin"
     t.string   "abbr"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20140530093531) do
     t.integer  "stores_count"
     t.string   "letter",       :limit => 1
     t.text     "content"
+    t.integer  "vn",                        :default => 1
   end
 
   add_index "companies", ["city_id"], :name => "index_companies_on_city_id"

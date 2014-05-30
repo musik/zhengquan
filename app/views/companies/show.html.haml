@@ -2,6 +2,7 @@
 -meta :keywords,t('.keywords',name: @company.name,short: @company.to_short)
 -meta :description,t('.description',name: @company.name,short: @company.to_short)
 -@content_layout = 'company'
+-@cls = {overview: "active"}
 %section
   %header.panel-header.row-fluid
     .span11
@@ -34,8 +35,20 @@
     %p
       %b 业务范围:
       = @company.scopes
+    %h3 简介
+    .entry-content
+      -if @company.content.present?
+        =simple_format @company.content
+      -else
+        暂无简介
     -if can? :edit,@company
-      %p= link_to '编辑以上信息', edit_company_path(@company),class: "btn btn-primary"
+      %p.mt1e
+        = link_to '编辑', edit_company_path(@company),class: "btn btn-primary"
+    .alert
+      当前版本号: #{@company.version}
+      -if @company.versions.count > @company.version
+        未审核版本: #{@company.versions.count - @company.version} 个
+        =link_to "查看",company_versions_url
 
   %header.panel-header.row-fluid
     .span11

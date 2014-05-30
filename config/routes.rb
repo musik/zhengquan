@@ -21,5 +21,6 @@ Zhengquan::Application.routes.draw do
   resources :users
   #get '/:id'=>'companies#show'
   get '/:id/yyb'=>'companies#yyb',:as=>'company_stores'
+  get '/:id/versions'=>'companies#versions',:as=>'company_versions'
   get '/:id'=>'companies#show',:as=>'company_home'
 end

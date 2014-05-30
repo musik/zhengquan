@@ -2,19 +2,21 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :name
-    = f.input :short
-    = f.input :slug
-    = f.input :address
-    = f.input :address1
-    = f.input :contact
-    = f.input :sn
-    = f.input :capital
-    = f.input :postal
-    = f.input :email
-    = f.input :website
-    = f.input :phone
-    = f.input :scopes
+    -if can? :manage,@company
+      = f.input :name
+      = f.input :short
+      = f.input :slug
+      = f.input :address
+      = f.input :address1
+      = f.input :contact
+      = f.input :sn
+      = f.input :capital
+      = f.input :postal
+      = f.input :email
+      = f.input :website
+      = f.input :phone
+      = f.input :scopes
+    =f.input :content,input_html: {rows: 8,class: "input-xxlarge"}
 
   .form-actions
     = f.button :submit

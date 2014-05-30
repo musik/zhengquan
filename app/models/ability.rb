@@ -7,9 +7,10 @@ class Ability
     if user.has_role? :admin
       can :manage, :all
     else
+      can :manage, :all
       can :read, :all
-      can :edit, Company
-      can :yyb, Company
+      can [:edit,:update], Company
+      can [:yyb,:versions], Company
     end
     # Define abilities for the passed in user here. For example:
     #

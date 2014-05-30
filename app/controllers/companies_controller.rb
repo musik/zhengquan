@@ -1,3 +1,4 @@
+#encoding: utf-8
 class CompaniesController < ApplicationController
   load_and_authorize_resource :find_by=>'slug',:except=>[:city]
   def home
@@ -18,6 +19,7 @@ class CompaniesController < ApplicationController
   # GET /companies/1.json
   def show
     #@company = Company.find_by_slug(params[:id])
+    @company.revert_to(@company.vn)
     @stores = @company.stores.limit(10).all
     @groups = @company.stores.group(:Province_id).includes(:province)
     breadcrumbs.add @company.city.name,nil if @company.city.present?
@@ -34,6 +36,11 @@ class CompaniesController < ApplicationController
     breadcrumbs.add @company.name,company_home_url(@company.slug)
     breadcrumbs.add :yyb,nil
   end
+  def versions
+    breadcrumbs.add @company.name,company_home_url(@company.slug)
+    breadcrumbs.add :versions,nil
+  end
+
 
   # GET /companies/new
   # GET /companies/new.json
@@ -75,7 +82,7 @@ class CompaniesController < ApplicationController
     #@company = Company.find_by_slug(params[:id])
     respond_to do |format|
       if @company.update_attributes(params[:company])
-        format.html { redirect_to @company, notice: 'Company was successfully updated.' }
+        format.html { redirect_to @company, notice: '信息已提交，请等待审核通过才会更新。' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

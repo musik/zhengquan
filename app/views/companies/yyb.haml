@@ -1,7 +1,13 @@
 -title "#{@company.name}营业部" 
 
-.span9
-  %h1=yield :header
-  =paginate @stores
-  = render :partial => 'stores',:locals=>{:stores=>@stores}
-= render :partial => 'primary'
+-@content_layout = 'company'
+-@cls = {stores: "active"}
+%section
+  %header.panel-header.row-fluid
+    .span11
+      .panel-header-coll
+        %h2=yield :header
+    .span1
+  %section.panel-content
+    =paginate @stores
+    = render :partial => 'stores',:locals=>{:stores=>@stores}

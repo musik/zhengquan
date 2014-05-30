@@ -108,10 +108,25 @@ p.mute
   margin-right: 100px
   p.desc
 .inner-2col
+  //border-top:  1px solid #ddd
   .col-nav
     width: 200px
     border-right: 1px solid #ddd
     border-top:  1px solid #ddd
+    min-height: 300px
+    .nav-list
+      margin-top: 23px
+      border-bottom:  1px solid #ddd
+      li
+        line-height: 28px
+        a
+          border: 1px solid #ddd
+          border-width: 1px 0 0
+          color: #888
+    .nav-list > li.active > a
+      background: #fff
+      color: #333
+      margin-right: -16px
 .tb
   display: table
   width: 100%
@@ -129,3 +144,5 @@ p.mute
   padding: 1em 2em
 .panel-content
   padding: 2em
+.entry-content
+  margin: 0 0 1em 0

@@ -1,6 +1,6 @@
 #encoding: utf-8
 class Company < ActiveRecord::Base
-  attr_accessible :address, :address1, :capital, :contact, :email, :name, :oid, :phone, :postal, :scopes, :sn, :website, :slug,:pinyin,:abbr,:short,:city_id
+  attr_accessible :address, :address1, :capital, :contact, :email, :name, :oid, :phone, :postal, :scopes, :sn, :website, :slug,:pinyin,:abbr,:short,:city_id,:content,:letter,:vn
   belongs_to :city,:counter_cache=>true
   has_many :stores
   scope :large,order('stores_count desc')

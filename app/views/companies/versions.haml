@@ -1,0 +1,36 @@
+-title "#{@company.name}版本对比" 
+-meta :robots,'noindex'
+
+-@content_layout = 'company'
+-@cls = {versions: "active"}
+-@can_manage = can? :manage,@company
+%section
+  %header.panel-header.row-fluid
+    .span11
+      .panel-header-coll
+        %h2=yield :header
+    .span1
+  %section.panel-content
+    %table.table
+      %tr
+        %td 版本号
+        %td 更新时间
+        %td
+        %td
+      -@company.versions.each do |v|
+        %tr
+          %td=v.number
+          %td=v.updated_at
+          %td
+            %ul
+              -v.modifications.each do |col,changes|
+                %li
+                  %strong=t("activerecord.attributes.company.#{col}")
+                  %del=changes[0] || "null"
+                  \=>
+                  =changes[1] || "null"
+          %td
+            -if @can_manage
+              =link_to "通过"
+
+

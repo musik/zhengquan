@@ -1,7 +1,15 @@
 %h1=@company.to_short
+= render 'layouts/messages'
+-@cls ||= {}
 %section.container
   %span.inner-2col.tb
     %span.tr
       %aside.td.col-nav
+        %nav
+          %ul.nav.nav-list
+            %li{class: @cls[:overview]}=link_to '基本信息',company_home_url(@company)
+            %li{class: @cls[:stores]}=link_to "营业部",company_stores_url(@company.slug)
+            -if @company.versions.count > 1
+              %li{class: @cls[:versions]}=link_to "版本",company_versions_url,rel: 'nofollow'
       %section.td.col-r
         =yield

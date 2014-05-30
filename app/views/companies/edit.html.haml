@@ -10,6 +10,4 @@
   %section.panel-content
     = render 'form'
 
-    = link_to 'Show', @company
-    \|
-    = link_to 'Back', companies_path
+    = link_to '返回', company_home_url(@company)
