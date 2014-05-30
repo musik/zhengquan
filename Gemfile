@@ -63,3 +63,6 @@ gem 'redis-rails'
 gem 'chinese_pinyin'
 gem 'china_regions'
 gem 'RedCloth'
+
+
+gem 'vestal_versions', :git => 'git://github.com/laserlemon/vestal_versions'

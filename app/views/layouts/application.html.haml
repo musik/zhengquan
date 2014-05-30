@@ -31,16 +31,19 @@
           .breadcrumbs
             -#%span.gray 您的位置:
             =breadcrumbs.render :format=>'inline'
-        .content
-          .row
-            -if @multicol
-              .span12
-                = render 'layouts/messages'
-              = yield
-            -else
-              .span12
-                = render 'layouts/messages'
+        -if @content_layout
+          = render file: "layouts/#{@content_layout}"
+        -else
+          .content
+            .row
+              -if @multicol
+                .span12
+                  = render 'layouts/messages'
                 = yield
+              -else
+                .span12
+                  = render 'layouts/messages'
+                  = yield
       / ! end of .container
     / ! end of #main
     %footer

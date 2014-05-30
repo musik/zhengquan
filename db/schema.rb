@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131211040815) do
+ActiveRecord::Schema.define(:version => 20140530093531) do
 
   create_table "cities", :force => true do |t|
     t.string   "name"
@@ -45,14 +45,16 @@ ActiveRecord::Schema.define(:version => 20131211040815) do
     t.string   "website"
     t.string   "phone"
     t.string   "scopes"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.string   "slug"
     t.string   "pinyin"
     t.string   "abbr"
     t.string   "short"
     t.integer  "city_id"
     t.integer  "stores_count"
+    t.string   "letter",       :limit => 1
+    t.text     "content"
   end
 
   add_index "companies", ["city_id"], :name => "index_companies_on_city_id"
@@ -147,5 +149,26 @@ ActiveRecord::Schema.define(:version => 20131211040815) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id"
+
+  create_table "versions", :force => true do |t|
+    t.integer  "versioned_id"
+    t.string   "versioned_type"
+    t.integer  "user_id"
+    t.string   "user_type"
+    t.string   "user_name"
+    t.text     "modifications"
+    t.integer  "number"
+    t.integer  "reverted_from"
+    t.string   "tag"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "versions", ["created_at"], :name => "index_versions_on_created_at"
+  add_index "versions", ["number"], :name => "index_versions_on_number"
+  add_index "versions", ["tag"], :name => "index_versions_on_tag"
+  add_index "versions", ["user_id", "user_type"], :name => "index_versions_on_user_id_and_user_type"
+  add_index "versions", ["user_name"], :name => "index_versions_on_user_name"
+  add_index "versions", ["versioned_id", "versioned_type"], :name => "index_versions_on_versioned_id_and_versioned_type"
 
 end

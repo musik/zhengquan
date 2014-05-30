@@ -5,6 +5,8 @@ class Company < ActiveRecord::Base
   has_many :stores
   scope :large,order('stores_count desc')
   before_create :slug_gen
+
+  versioned
   def to_short
     name.sub(/(股份|经纪)*有限.*公司/,'')
   end
@@ -44,6 +46,7 @@ class Company < ActiveRecord::Base
     self[:short] = to_short if short.nil?
     self[:pinyin] = Pinyin.t(name,'')
     self[:abbr] = Pinyin.abbr(name)
+    self[:letter] = self[:abbr][0]
 
     base_slug = slug.present? ? slug : Pinyin.abbr(short)
     tmp = base_slug

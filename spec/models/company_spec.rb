@@ -15,10 +15,13 @@ describe Company do
     #pp c.stores
   end
   it "should gen slug" do
-    c = Company.create :name=>'国海证券有限责任公司'
-    c.slug.should be_eql('ghzq')
-    c = Company.create :name=>'国海证券有限责任公司'
-    c.slug.should be_eql('ghzq2')
+    #c = Company.create :name=>'国海证券有限责任公司'
+    #c.slug.should be_eql('ghzq2')
+    #c = Company.create :name=>'国海证券有限责任公司'
+    #c.slug.should be_eql('ghzq3')
+    #pp c.version
+    #c.update_attribute :address,'here'
+    #pp c.version
   end
 end
 

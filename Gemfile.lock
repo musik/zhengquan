@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/laserlemon/vestal_versions
+  revision: beccc5744ec030664f003d61ffb617edefd7885b
+  specs:
+    vestal_versions (2.0.0)
+      activerecord (>= 3, < 5)
+      activesupport (>= 3, < 5)
+
+GIT
   remote: git://github.com/sosedoff/capistrano-unicorn.git
   revision: dc49187df68e92bc04b7b0fa42da1e24f70d69f5
   specs:
@@ -422,3 +430,4 @@ DEPENDENCIES
   typhoeus
   uglifier (>= 1.0.3)
   unicorn (>= 4.3.1)
+  vestal_versions!

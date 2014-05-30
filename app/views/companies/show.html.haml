@@ -1,10 +1,14 @@
 -title t('.title',name: @company.name,short: @company.to_short),@company.name
 -meta :keywords,t('.keywords',name: @company.name,short: @company.to_short)
 -meta :description,t('.description',name: @company.name,short: @company.to_short)
-.span9
-  %h1= @company.to_short
-  .well
-    %h2 #{@company.name}
+-@content_layout = 'company'
+%section
+  %header.panel-header.row-fluid
+    .span11
+      .panel-header-coll
+        %h2 #{@company.name}
+    .span1
+  %section.panel-content
     %p
       %b 注册地址:
       = @company.address
@@ -31,19 +35,24 @@
       %b 业务范围:
       = @company.scopes
 
-  %h2 #{@company.to_short}营业部
-  -if @groups.present?
-    %ul.filters
-      -@groups.each do |s|
-        -p = s.province
-        -next if p.nil?
-        %li
-          =link_to p.short_name,province_company_url(p.name_en,@company.slug),:title=>"#{@company.short}#{p.short_name}营业部",:class=>(@province.present? && @province.id == p.id) ? "current" : nil
-    .clearfix
-  = render :partial => 'stores',:locals=>{:stores=>@stores}
-  =link_to "更多 &raquo;".html_safe,company_stores_url(@company.slug),:rel=>'nofollow' if @company.stores_count.present? && @company.stores_count > 10
+  %header.panel-header.row-fluid
+    .span11
+      .panel-header-coll
+        %h2 #{@company.to_short}营业部
+    .span1
+  %section.panel-content
+    -if @groups.present?
+      %ul.filters
+        -@groups.each do |s|
+          -p = s.province
+          -next if p.nil?
+          %li
+            =link_to p.short_name,province_company_url(p.name_en,@company.slug),:title=>"#{@company.short}#{p.short_name}营业部",:class=>(@province.present? && @province.id == p.id) ? "current" : nil
+      .clearfix
+    = render :partial => 'stores',:locals=>{:stores=>@stores}
+    =link_to "更多 &raquo;".html_safe,company_stores_url(@company.slug),:rel=>'nofollow' if @company.stores_count.present? && @company.stores_count > 10
 
 
   -if can? :edit,@company
     %p= link_to 'Edit', edit_company_path(@company)
-= render :partial => 'primary'
+  -#= render :partial => 'primary'
