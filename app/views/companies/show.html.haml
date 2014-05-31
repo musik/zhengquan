@@ -50,7 +50,7 @@
       当前版本号: #{@company.version}
       新版本: #{@company.versions.count + 1 - @company.version} 个
       -if params[:version] or @company.versions.count >= @company.version
-        =link_to "查看",company_versions_url
+        =link_to "查看",company_versions_url,rel: "nofollow"
 
   %header.panel-header.row-fluid
     .span11
