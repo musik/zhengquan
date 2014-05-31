@@ -9,5 +9,12 @@
         %h2=yield :header
     .span1
   %section.panel-content
+    -if @pgroups.present? && @pgroups.count.size > 1
+      %ul.nav.nav-pills
+        -@pgroups.each do |s|
+          -p = s.province
+          -next if p.nil?
+          %li{class: (@province.present? && @province.id == p.id) ? "active" : nil}
+            =link_to p.short_name,province_company_url(p.name_en,@company.slug),:title=>"#{@company.short}#{p.short_name}营业部"
     =paginate @stores
     = render :partial => 'stores',:locals=>{:stores=>@stores}

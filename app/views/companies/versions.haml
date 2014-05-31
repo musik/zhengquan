@@ -11,6 +11,8 @@
         %h2=yield :header
     .span1
   %section.panel-content
+    .alert
+      当前版本号: #{@company.vn}
     %table.table
       %tr
         %td 版本号
@@ -30,7 +32,8 @@
                   \=>
                   =changes[1] || "null"
           %td
+            =link_to "预览",company_home_url(@company,version: v.number)
             -if @can_manage
-              =link_to "通过"
+              =link_to "通过",company_url(vn: v.number),method: :put,remote: true
 
 

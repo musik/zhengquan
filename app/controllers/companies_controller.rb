@@ -19,7 +19,8 @@ class CompaniesController < ApplicationController
   # GET /companies/1.json
   def show
     #@company = Company.find_by_slug(params[:id])
-    @company.revert_to(@company.vn)
+    @version = params[:version] || @company.vn
+    @company.revert_to(@version.to_i)
     @stores = @company.stores.limit(10).all
     @groups = @company.stores.group(:Province_id).includes(:province)
     breadcrumbs.add @company.city.name,nil if @company.city.present?
@@ -32,6 +33,7 @@ class CompaniesController < ApplicationController
   end
   def yyb
     @stores = @company.stores.page(params[:page] || 1)
+    @pgroups = @company.stores.group(:province_id).includes(:province)
     #breadcrumbs.add @company.city.name,nil if @company.city.present?
     breadcrumbs.add @company.name,company_home_url(@company.slug)
     breadcrumbs.add :yyb,nil
@@ -80,10 +82,16 @@ class CompaniesController < ApplicationController
   # PUT /companies/1.json
   def update
     #@company = Company.find_by_slug(params[:id])
+    if params[:vn]
+      @company.update_vn params[:vn]
+      head :no_content
+      return
+    end
     respond_to do |format|
       if @company.update_attributes(params[:company])
         format.html { redirect_to @company, notice: '信息已提交，请等待审核通过才会更新。' }
         format.json { head :no_content }
+        format.js { head :no_content }
       else
         format.html { render action: "edit" }
         format.json { render json: @company.errors, status: :unprocessable_entity }

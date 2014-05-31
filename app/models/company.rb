@@ -19,6 +19,11 @@ class Company < ActiveRecord::Base
   def city_name
     city.present? ? city.short_name : nil
   end
+  def update_vn number
+    skip_version do
+      update_attribute :vn,number
+    end
+  end
 
   def self.scopes
     pluck(:scopes).join('；').gsub(/。/,'').split('；').uniq

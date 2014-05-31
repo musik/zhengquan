@@ -15,12 +15,13 @@ Zhengquan::Application.routes.draw do
   #authenticated :user do
     #root :to => 'home#index'
   #end
-  match '/companies/:id'=>'companies#city',:as=>'company_city'
+  #match '/companies/:id'=>'companies#city',:as=>'company_city'
   root :to => "companies#home"
   devise_for :users
   resources :users
   #get '/:id'=>'companies#show'
   get '/:id/yyb'=>'companies#yyb',:as=>'company_stores'
   get '/:id/versions'=>'companies#versions',:as=>'company_versions'
+  #get '/:id/version/:number'=>'companies#version',:as=>'company_version'
   get '/:id'=>'companies#show',:as=>'company_home'
 end

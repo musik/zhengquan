@@ -30,12 +30,12 @@ class StoresController < ApplicationController
     #@companies = @province.companies if params[:page].nil?
     @company = Company.find_by_slug(params[:id])
     @stores = @province.stores.where(:company_id=>@company.id).page(params[:page] || 1).includes([:company,:province,:city])
-    @groups = @province.stores.group(:company_id).includes(:company)
+    #@groups = @province.stores.group(:company_id).includes(:company)
     @pgroups = @company.stores.group(:province_id).includes(:province)
     breadcrumbs.add @company.to_short,company_home_url(@company.slug)
     breadcrumbs.add @province.short_name + "分公司"
-    @title = "#{@company.short}#{@province.short_name}分公司/#{@company.name}在#{@province.name}的营业部"
-    @header = "#{@company.short}#{@province.short_name}分公司"
+    @title = "#{@company.short}#{@province.short_name}分公司_#{@company.name}在#{@province.name}的营业部"
+    @header = "#{@province.short_name}分公司"
     @header = "<span class='pre'>#{@company.name} &raquo;</span> #{@header}"
     #render :province
   end

@@ -3,6 +3,7 @@
 -meta :description,t('.description',name: @company.name,short: @company.to_short)
 -@content_layout = 'company'
 -@cls = {overview: "active"}
+-meta :robots,"noindex" if params[:version]
 %section
   %header.panel-header.row-fluid
     .span11
@@ -46,8 +47,8 @@
         = link_to '编辑', edit_company_path(@company),class: "btn btn-primary"
     .alert
       当前版本号: #{@company.version}
-      -if @company.versions.count > @company.version
-        未审核版本: #{@company.versions.count - @company.version} 个
+      新版本: #{@company.versions.count + 1 - @company.version} 个
+      -if params[:version] or @company.versions.count >= @company.version
         =link_to "查看",company_versions_url
 
   %header.panel-header.row-fluid
