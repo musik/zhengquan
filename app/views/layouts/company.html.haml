@@ -5,6 +5,8 @@
   %span.inner-2col.tb
     %span.tr
       %aside.td.col-nav
+        .logo
+          =image_tag "/logo/#{@company.slug}.jpg",height: '41',alt: @company.name
         %nav
           %ul.nav.nav-list
             %li{class: @cls[:overview]}=link_to '基本信息',company_home_url(@company)
