@@ -11,31 +11,32 @@
         %h2 #{@company.name}
     .span1
   %section.panel-content
-    %p
-      %b 注册地址:
-      = @company.address
-    %p
-      %b 办公地址:
-      = @company.address1
-      %small (邮编 #{@company.postal})
-    %p
-      %b 法人代表:
-      = @company.contact
-    %p
-      %b 许可证:
-      = @company.sn
-    %p
-      %b 注册资金:
-      = @company.capital
-    %p
-      %b 官方网站:
-      =link_to @company.website,@company.website,:rel=>"nofollow",:target=>'_blank'
-    %p
-      %b 联系电话:
-      = @company.phone
-    %p
-      %b 业务范围:
-      = @company.scopes
+    .tb
+      .tr
+        .td 注册地址:
+        .td= @company.address
+      .tr
+        .td 办公地址:
+        .td
+          = @company.address1
+          %small (邮编 #{@company.postal})
+      .tr
+        .td 法人代表:
+        .td= @company.contact
+      .tr
+        .td 许可证:
+        .td= @company.sn
+      .tr
+        .td 注册资金:
+        .td= @company.capital
+      .tr
+        .td 官方网站:
+        .td=link_to @company.website,@company.website,:rel=>"nofollow",:target=>'_blank'
+      .tr
+        .td 联系电话:
+        .td= @company.phone
+    %h3 业务范围
+    .entry-content= @company.scopes
     %h3 简介
     .entry-content
       -if @company.content.present?
