@@ -2,4 +2,7 @@
 %ul.nav
   %li=link_to '证券公司',root_url
   %li=link_to '营业部',stores_url
+  -if can? :manage,:all
+    %li=link_to '版本',versions_url
+
 

@@ -10,6 +10,7 @@ Zhengquan::Application.routes.draw do
   match '/:province/:id' => 'stores#province_company',:as=>'province_company',:constraints=>{:province => provinces}
   match '/:province' => 'stores#province',:as=>'province',:constraints=>{:province => provinces}
 
+  get 'companies/versions'=>'companies#recent_versions',as: "versions"
   resources :companies,:except=>[:index]
 
   #authenticated :user do

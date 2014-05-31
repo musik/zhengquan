@@ -1,0 +1,31 @@
+-title "最近编订版本"
+-meta :robots,"noindex"
+=paginate @versions
+-@can_manage = can? :manage,@company
+%table.table
+  %tr
+    %td 公司
+    %td 当前版本
+    %td 版本号
+    %td 更新时间
+    %td
+    %td
+  -@versions.each do |v|
+    -company = v.versioned
+    %tr
+      %td=link_to company.name,company_home_url(company)
+      %td=company.vn
+      %td=v.number
+      %td=v.updated_at
+      %td
+        %ul
+          -v.modifications.each do |col,changes|
+            %li
+              %strong=t("activerecord.attributes.company.#{col}")
+              %del=changes[0] || "null"
+              \=>
+              =changes[1] || "null"
+      %td
+        -if @can_manage
+          =link_to "通过",company_url(company.slug,vn: v.number),method: :put,remote: true
+

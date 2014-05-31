@@ -1,6 +1,6 @@
 #encoding: utf-8
 class CompaniesController < ApplicationController
-  load_and_authorize_resource :find_by=>'slug',:except=>[:city]
+  load_and_authorize_resource :find_by=>'slug',:except=>[:city,:new_versions]
   def home
     @companies = Company.all_by_az
   end
@@ -13,6 +13,11 @@ class CompaniesController < ApplicationController
       format.html # index.html.erb
       format.json { render json: @companies }
     end
+  end
+  def recent_versions
+    breadcrumbs.add "最近编订版本"
+    @versions = VestalVersions::Version.includes(:versioned).
+      order('id desc').page(params[:page]).per(30)
   end
 
   # GET /companies/1
