@@ -7,7 +7,6 @@ class Ability
     if user.has_role? :admin
       can :manage, :all
     else
-      can :manage, :all
       can :read, :all
       can [:edit,:update], Company
       can [:yyb,:versions], Company
