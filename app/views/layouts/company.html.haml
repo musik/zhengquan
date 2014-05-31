@@ -1,7 +1,7 @@
-%h1=@company.to_short
-= render 'layouts/messages'
 -@cls ||= {}
 %section.container
+  = render 'layouts/messages'
+  %h1=@company.to_short
   %span.inner-2col.tb
     %span.tr
       %aside.td.col-nav

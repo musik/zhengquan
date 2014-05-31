@@ -2,18 +2,33 @@
 -meta :description,"证券公司大全，提供中国所有证券公司的注册信息、官方网址、联系电话、各地分公司及营业部地址等信息,以便查询。本站证券公司名录来自中国证券协会官方网站,仅根据注册营业部数量排序,不代表相关公司实际排名或排行。"
 -meta :keywords,"证券公司,证券公司排名,证券公司名录,证券公司查询,哪个证券公司好,中国证券公司排名,证券公司排行"
 -@hide_breadcrumbs = true
-.span9  
-  .alert
-    %button.close{'data-dismiss'=>"alert"} &times;
-    你是不是在找<a href="/lxzq">联讯证券</a>?
-  .alert.alert-info
-    %button.close{'data-dismiss'=>"alert"} &times;
-    此域名转让.有意请带价短信
-    =javascript_tag "document.write(reverse('13690478081'))"
-    ,或QQ 
-    =javascript_tag "document.write(reverse('62856285'))"
+-@content_layout = 'full'
+%section.f1
+  .container
+    %h1.h1 证券公司大全
+    %p
+      本站证券公司数据来自中国证券协会官方网站,仅根据注册营业部数量排序,不代表相关公司实际排名。
+    -#.alert
+      -#%button.close{'data-dismiss'=>"alert"} &times;
+      -#你是不是在找<a href="/lxzq">联讯证券</a>?
+    .notice.mute
+      %button.close{'data-dismiss'=>"alert"} &times;
+      此域名转让.有意请带价短信
+      =javascript_tag "document.write(reverse('13690478081'))"
+      ,或QQ 
+      =javascript_tag "document.write(reverse('62856285'))"
+%section.f2
+  .container
+    -default  = 'a-g'
+    %ul.nav.nav-tabs.nav-cs
+      -@companies = Company.all_index
+      -@companies.keys.each_with_index do |k,i|
+        -k = k.to_s.sub('..','-')
+        %li{class: [k==default ? "active" : nil,i.zero? ? "first" : nil]}=link_to k.upcase,"#i#{k}",data: {toggle: "tab"}
+    .tab-content
+      -@companies.each do |a,cs|
+        -next if cs.empty?
+        -a = a.to_s.sub('..','-')
+        .tab-pane{class: a == default ? "active" : nil,id: "i#{a}"}
+          = render :partial => 'logo',:locals=>{:companies=>cs}
 
-  %h1 证券公司
-  = render :partial => 'logo',:locals=>{:companies=>@companies}
-  -#= render :partial => 'table',:locals=>{:companies=>@companies}
-= render :partial => 'primary'

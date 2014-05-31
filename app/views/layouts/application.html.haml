@@ -31,9 +31,10 @@
           .breadcrumbs
             -#%span.gray 您的位置:
             =breadcrumbs.render :format=>'inline'
-        -if @content_layout
-          = render file: "layouts/#{@content_layout}"
-        -else
+      -if @content_layout
+        = render file: "layouts/#{@content_layout}"
+      -else
+        .container
           .content
             .row
               -if @multicol

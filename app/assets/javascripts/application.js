@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //xxx= require bootstrap
 //= require bootstrap-alert
+//= require bootstrap-tab
 function reverse(s){
     return s.split("").reverse().join("");
 }

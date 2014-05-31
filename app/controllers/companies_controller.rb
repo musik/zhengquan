@@ -2,7 +2,7 @@
 class CompaniesController < ApplicationController
   load_and_authorize_resource :find_by=>'slug',:except=>[:city]
   def home
-    @companies = Company.large.includes(:city).all
+    @companies = Company.all_by_az
   end
   # GET /companies
   # GET /companies.json

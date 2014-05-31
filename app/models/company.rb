@@ -39,6 +39,30 @@ class Company < ActiveRecord::Base
       c.import_stores
     end
   end
+  def self.all_index
+    hash = {
+      'a'..'g'=>[],
+      'h'..'n'=>[],
+      'o'..'t'=>[],
+      'u'..'z'=>[],
+    }
+    results = Company.order("abbr asc").select("letter,slug,short,name").all
+    results.each do |r|
+      hash.keys.each do |range|
+        (hash[range] << r and break) if range.include?(r.letter)
+      end
+    end
+    hash
+  end
+  def self.all_by_az
+    hash = {}
+    ("a".."z").each do |r| hash[r] = [] end
+    results = Company.order("abbr asc").select("letter,slug,short,name").all
+    results.each do |r|
+      hash[r.letter] << r
+    end
+    hash
+  end
   def import_stores
     Sac.yingyebu(oid).each do |yyb|
       next if stores.exists? :name=>yyb.name

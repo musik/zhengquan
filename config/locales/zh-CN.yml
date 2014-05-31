@@ -5,6 +5,7 @@ zh-CN:
     yyb: 营业部
     page: "%{page}"
     edit: 编辑
+    versions: 版本
   companies:
     show:
       title: "%{short}_%{short}怎么样?%{short}营业部,%{name}"
