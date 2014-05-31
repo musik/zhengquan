@@ -31,6 +31,11 @@
         -a = a.to_s.sub('..','-')
         .tab-pane{class: a == default ? "active" : nil,id: "i#{a}"}
           = render :partial => 'logo',:locals=>{:companies=>cs}
+    -top_cities = Province.neidi
+    .home-provinces
+      %span 分省浏览
+      -top_cities.each do |city|
+        =link_to city.short_name,province_url(city.name_en),:title=>"#{city.short_name}证券公司"
 %section.f3
   .container
     -if is_home?
