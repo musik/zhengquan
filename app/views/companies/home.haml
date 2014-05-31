@@ -31,4 +31,9 @@
         -a = a.to_s.sub('..','-')
         .tab-pane{class: a == default ? "active" : nil,id: "i#{a}"}
           = render :partial => 'logo',:locals=>{:companies=>cs}
+%section.f3
+  .container
+    -if is_home?
+      %span 友情链接
+      =snip_get('home')
 
