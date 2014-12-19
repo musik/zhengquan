@@ -19,13 +19,16 @@
     = javascript_include_tag "application"
     =javascript_tag "var _hmt = _hmt || [];"
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <script type='text/javascript' src='http://js.adm.cnzz.net/js/abase.js'></script>
   %body{:class => "#{controller_name} #{action_name}"}
     .navbar.navbar-fixed-top.navbar-inverse
       %nav.navbar-inner
         .container
           = render 'layouts/navigation'
     #main{:role => "main"}
-      #jsin
+      .banner
+        .container
+          <script>CNZZ_SLOT_RENDER("335087");</script>
       .container
         -unless @hide_breadcrumbs
           .breadcrumbs
