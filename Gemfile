@@ -1,5 +1,5 @@
 #source 'https://rubygems.org'
-source 'http://ruby.taobao.org'
+source 'https://ruby.taobao.org'
 gem 'rails', '3.2.16'
 gem 'sqlite3', :group => [:development, :test]
 gem 'mysql2'
@@ -55,7 +55,7 @@ gem 'devise-i18n-views'
 gem 'kaminari-i18n'
 
 gem 'typhoeus'
-gem 'nokogiri'
+# gem 'nokogiri'
 
 gem 'redis-rails'
 #gem 'chinese_cities'
